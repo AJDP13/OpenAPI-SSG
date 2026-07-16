@@ -18,5 +18,5 @@ export interface PathItemObject {
     query?: OperationObject;
     additionalOperations?: Record<string, OperationObject>;
     servers?: ServerObject[];
-    parameters?: [ParameterObject | ReferenceObject]
+    parameters?: Array<ParameterObject | ReferenceObject>;
 }
