@@ -1,5 +1,5 @@
 import { ExampleObject } from "./ExampleObject";
-import { ReferenceObject } from "./ReferenceObject";
+import { Referencable } from "./Referencable";
 
 export enum ParameterObjectInString {
     QUERY = "query",
@@ -17,5 +17,5 @@ export interface ParameterObject {
     deprecated: boolean; //Specifies if the parameter is deprecated
     allowEmptyValue: boolean; //if true, client MAY pass zero-length string value in place of parameters that would otherwise entirely be omitted
     example: any,
-    examples: Record<string, ExampleObject | ReferenceObject>
+    examples: Record<string, Referencable<ExampleObject>>
 }

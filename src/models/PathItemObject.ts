@@ -1,7 +1,7 @@
 import { OperationObject } from "./OperationObject";
 import {ServerObject} from "./ServerObject"
 import { ParameterObject } from "./ParameterObject";
-import { ReferenceObject } from "./ReferenceObject";
+import { Referencable } from "./Referencable";
 
 export interface PathItemObject {
     $ref?: string; //Allows referenced defintition to this path item. MUST be a URI
@@ -18,5 +18,5 @@ export interface PathItemObject {
     query?: OperationObject;
     additionalOperations?: Record<string, OperationObject>;
     servers?: ServerObject[];
-    parameters?: Array<ParameterObject | ReferenceObject>;
+    parameters?: Referencable<ParameterObject>[];
 }
