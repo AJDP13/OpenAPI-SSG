@@ -16,10 +16,32 @@ export class OpenAPIParser{
     }
 
     private parseInfo(data: unknown): InfoObject{
-        return {
-            title: "",
-            version: ""
+        const info: InfoObject = {
+            title: "Error - Unknown",
+            version: "Error - Unknown"
         }
+
+        if(!this.isObject(data)){
+            //InfoObject is not a valid JSON Object - Log the error and continue
+            return info;
+        }
+
+        const object = data as Record<string, unknown>;
+
+        if(typeof object.title !== 'string'){
+            //InfoObject.title should be a valid string
+        }else{
+            info.title = object.title
+        }
+
+        if(typeof object.version !== 'string'){
+            //InfoObject.version should be a valid string
+        }else{
+            info.version = object.version
+        }
+
+
+        return info;
     }
 
     private parseServers(data: unknown): ServerObject[] {
@@ -36,5 +58,9 @@ export class OpenAPIParser{
 
     private parseOperation(data: unknown): OperationObject{
 
+    }
+
+    private isObject(data: unknown): boolean{
+        return (typeof data === "object" && data !== null);
     }
 }
