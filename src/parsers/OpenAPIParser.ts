@@ -8,11 +8,28 @@ import { OperationObject } from "../models/OperationObject";
 export class OpenAPIParser{
 
     public parse(contents: string): OpenAPIObject{
+        try{
+            const data = JSON.parse(contents);
+            const api: OpenAPIObject = {
+                openapi: "Unkown Version",
+                $self: "",
+                info: {
+                    
+                }
+            }
 
+            const api: OpenAPIObject = {
+                openapi: data.openapi,
+                $self: data['$self']
+            }
+        }catch(error){
+            throw new Error("Provided data was not a valid JSON object")
+        }
+        
     }
 
     public parseFile(file: string): Promise<OpenAPIObject> {
-
+        //Open file then call this.parse function
     }
 
     private parseInfo(data: unknown): InfoObject{
