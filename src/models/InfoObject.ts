@@ -25,10 +25,10 @@ export class InfoObject{
     constructor(
         public title: string,
         public version: string,
-        public summary: string = "",
-        public description: string = "",
-        public termsOfService: string = "", 
-        public contact: ContactObject | undefined,
-        public license: LicenseObject | undefined,
+        public summary?: string,
+        public description?: string,
+        public termsOfService?: string, 
+        public contact?: ContactObject,
+        public license?: LicenseObject,
     ){}
 }
