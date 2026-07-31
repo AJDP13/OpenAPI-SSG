@@ -13,9 +13,7 @@ export class OpenAPIObject{
 
     public static readonly example: OpenAPIObject = new OpenAPIObject(
         "3.1.0",
-        "",
-        InfoObject.example,
-        ""
+        InfoObject.example
     )
 
     constructor(
