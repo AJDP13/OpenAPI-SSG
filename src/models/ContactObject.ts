@@ -4,11 +4,14 @@
 //     email?: string; //Email address of contact person/origin. MUST be email address
 // }
 
-export class ContactObject{
-    name: string;
-    url: string;
-    email: string;
+/**
+ * OpenAPI 3.1 Contact Object
+ * 
+ * Required fields: none
+ * Specification: §4.x.x Contact Object
+ */
 
+export class ContactObject{
     public static readonly example: ContactObject = new ContactObject(
         "Arun Dutta-Plummer",
         "https://aerotrixlabs.com",
@@ -16,12 +19,8 @@ export class ContactObject{
     )
 
     constructor(
-        name: string = "",
-        url: string = "",
-        email: string = ""
-    ){
-        this.name = name;
-        this.url = url;
-        this.email = email
-    }
+        public name?: string,
+        public url?: string,
+        public email?: string
+    ){}
 }

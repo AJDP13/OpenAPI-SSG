@@ -1,25 +1,17 @@
 import {LicenseObject} from "./LicenseObject"
 import { ContactObject } from "./ContactObject";
 
-export interface InfoObject{
-    title: string; //REQUIRED - Title of the API
-    summary?: string; //Short summary of the API
-    description?: string; //Description of the API - CommonMark may be used for rich text representation
-    termsOfService?: string; //A URI for the ToS of the API - MUST be a URI
-    contact?: ContactObject; //Contact info for the exposed API
-    license?: LicenseObject; //License info for the exposed API
-    version: string; //REQUIRED - Version of the OpenAPI Document (Not the OpenAPI Specification Version)
-}
+// export interface InfoObject{
+//     title: string; //REQUIRED - Title of the API
+//     summary?: string; //Short summary of the API
+//     description?: string; //Description of the API - CommonMark may be used for rich text representation
+//     termsOfService?: string; //A URI for the ToS of the API - MUST be a URI
+//     contact?: ContactObject; //Contact info for the exposed API
+//     license?: LicenseObject; //License info for the exposed API
+//     version: string; //REQUIRED - Version of the OpenAPI Document (Not the OpenAPI Specification Version)
+// }
 
 export class InfoObject{
-    title: string;
-    summary: string;
-    description: string;
-    termsOfService: string;
-    contact: ContactObject;
-    license: LicenseObject;
-    version: string;
-
     public static readonly example: InfoObject = new InfoObject(
         "Example API Title",
         "0.0.0",
@@ -31,17 +23,12 @@ export class InfoObject{
     )
 
     constructor(
-        title: string,
-        version: string,
-        summary: string = "",
-        description: string = "",
-        termsOfService: string = "", 
-        contact: ContactObject = new ContactObject(),
-        license: LicenseObject,
-    ){
-        this.title = title;
-        this.summary = summary;
-        this.description = description;
-        this.termsOfService = termsOfService;
-    }
+        public title: string,
+        public version: string,
+        public summary: string = "",
+        public description: string = "",
+        public termsOfService: string = "", 
+        public contact: ContactObject | undefined,
+        public license: LicenseObject | undefined,
+    ){}
 }
