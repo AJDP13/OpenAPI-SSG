@@ -4,14 +4,24 @@ import { ServerObject } from "../models/ServerObject";
 import {PathsObject} from "../models/PathsObject";
 import { PathItemObject } from "../models/PathItemObject";
 import { OperationObject } from "../models/OperationObject";
+import { InvalidJSONError } from "../errors/InvalidJSONError";
 
 export class OpenAPIParser{
 
     public parse(contents: string): OpenAPIObject{
+        const data = JSON.parse(contents);
 
+        const APIObject: OpenAPIObject = {
+            openapi: data.openapi ?? "Unknown",
+            $self: data['$self'] ?? "Unknown",
+            info: this.parseInfo(data.info),
+            jsonSchemaDialect: data.jsonSchemaDialect ?? "Unknown"
+        }
+
+        return APIObject
     }
 
-    public parseFile(file: string): Promise<OpenAPIObject> {
+    public async parseFile(file: string): Promise<OpenAPIObject> {
 
     }
 
@@ -48,8 +58,34 @@ export class OpenAPIParser{
 
     }
 
-    private parsePaths(data: unknown): PathsObject {
+    private parsePaths(data: Record<string, any>): PathsObject {
 
+        /*
+            Takes a JS Object and attempts to convert it into a PathsObject type
+        */
+
+        const path_strings = Object.keys(data)
+
+        const paths: PathsObject = {}
+
+        for(const path_name of path_strings){
+            if(path_name[0] != "/"){
+                //Add to error log as path should start with '/'
+            }
+
+            const path_object = data[path_name]
+
+            if(!this.isObject(path_object)){
+                //Add to error log since value to path key must be an object
+                continue; //Skip this path now
+            }
+
+            const path: PathsObject = {
+
+            }
+
+            paths.push(this.parsePathItem(path_object as object))
+        }
     }
 
     private parsePathItem(data: unknown): PathItemObject{
