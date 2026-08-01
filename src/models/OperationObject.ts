@@ -1,6 +1,7 @@
 import { ParameterObject } from "./ParameterObject";
 import { ReferenceObject } from "./ReferenceObject";
 import { RequestBodyObject } from "./RequestBodyObject";
+import { ResponsesObject } from "./ResponsesObject";
 
 // export interface OperationObject {
 //     tags: string[]; //List of tags for API documentation control
@@ -18,6 +19,6 @@ export class OperationObject{
         public operationId?: string,
         public parameters?: (ParameterObject|ReferenceObject)[],
         public requestBody?: (RequestBodyObject | ReferenceObject),
-
+        public responses?: ResponsesObject,
     ){}
 }
